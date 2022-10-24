@@ -7,9 +7,11 @@ const ADMController = require('./controllers/AdmController');
 const TesteController = require('./controllers/TesteController');
 const ProvaController = require('./controllers/ProvaController');
 const ProfissoesController = require('./controllers/ProfissoesController');
+const SolveController = require('./controllers/SolveController');
 
 const { verifyJWT } = require('./controllers/AuthController');
 const { verifyJWTADM } = require('./controllers/AdmController');
+
 
 const routes = express.Router();
 
@@ -39,7 +41,7 @@ routes.get('/usuarios', verifyJWTADM, UsuarioController.listar);
 
 routes.post('/arquivados', verifyJWTADM, UsuarioController.arquivados);
 
-routes.post('/responder', verifyJWT, ProvaController.responder);
+routes.post('/responder', verifyJWT, SolveController.responder);
 
 routes.post('/atualizar', verifyJWTADM, ProvaController.atualizar);
 

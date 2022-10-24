@@ -1,4 +1,3 @@
-const SolveController = require('./SolveController');
 const Usuario = require('../models/Usuario');
 const Prova = require('../models/Prova');
 
@@ -36,65 +35,6 @@ module.exports = {
         return res.json(user);
     },
 
-    async responder(req, res) {
-        const { form, data } = req.body;
-        const current = await Prova.findOne({
-            where: {
-                usuario_id: req.UsuarioId,
-                teste_id: form
-            },
-        });
-
-        let resultadoTeste = null;
-
-        if (current) {
-            switch (form) {
-                case 1:
-                    resultadoTeste = await SolveController.solveAIP(data);
-                    break;
-                case 2:
-                    resultadoTeste = await SolveController.solveAPPG(data);
-                    break;
-                case 3:
-                    resultadoTeste = await SolveController.solveFICHA(data);
-
-                    await Usuario.update({
-                        nome: data.nome
-                    }, {
-                        where: {
-                            id: req.UsuarioId
-                        }
-                    })
-
-                    break;
-                case 4:
-                    resultadoTeste = await SolveController.solveG36(data);
-                    break;
-                case 5:
-                    resultadoTeste = await SolveController.solveII(data);
-                    break;
-                case 6:
-                    resultadoTeste = await SolveController.solvePF(data);
-                    break;
-                case 7:
-                    resultadoTeste = await SolveController.solveSDS(data);
-                    break;
-                default:
-                    throw new Error ("id inválido");
-            }
-            await Prova.update({
-                respostas: data,
-                resultado: resultadoTeste
-            }, {
-                where: {
-                    id: current.id
-                }
-            })
-            return res.status(200).end();
-        }
-        return res.status(401).end();
-    },
-
     async atualizar(req, res) {
         const { user, form, data } = req.body;
         const current = await Prova.findOne({
@@ -112,7 +52,7 @@ module.exports = {
                     resultadoTeste = await SolveController.solveFICHA(data);
                     break;
                 default:
-                    throw new Error ("id inválido");
+                    throw new Error("id inválido");
             }
             await Prova.update({
                 respostas: data,
