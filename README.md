@@ -1,7 +1,7 @@
 #(1) Nomes dos membros do grupo
  
 Gabriel Sacoman,
-Gabriel Torrres,
+Gabriel Torres,
 Lucca Medeiros,
 Thaís Andrade,
 
