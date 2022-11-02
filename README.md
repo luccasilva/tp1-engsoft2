@@ -1,9 +1,9 @@
 #(1) Nomes dos membros do grupo
  
-Gabriel Sacoman
-Gabriel Torrres
-Lucca Medeiros
-Thaís Andrade
+Gabriel Sacoman,
+Gabriel Torrres,
+Lucca Medeiros,
+Thaís Andrade,
 
 #(2) Explicação do sistema
 
